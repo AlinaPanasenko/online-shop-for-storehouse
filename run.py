@@ -64,7 +64,7 @@ def get_order():
         item_price = sales_data[1]
         print("Your choice is: " + item_name + " for €" + item_price)
         if validate_data(sales_data):
-            print('Input is valid!')
+            print('Input is valid!\n')
             break
         
     return sales_data
@@ -72,8 +72,8 @@ def get_order():
 def validate_data(values):
     """
     Inside the try, we check if number of values provided by user
-    mutch conditions
-    Raises ValueError if there is no match
+    match conditions
+    Raises ValueError if input didn't meet requirements
     """
     
     try:
@@ -100,7 +100,8 @@ def update_orders(data):
 
 def count_orders_full_sum():
     """
-    Count sum of all orders for the day
+    Count sum of all items in order
+    Convert updated data to int
     """
     print("Calculating orders sum...\n")
 
