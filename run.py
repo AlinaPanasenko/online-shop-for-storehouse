@@ -1,5 +1,7 @@
 """
-Imported libraries and constant variables were written as in the Love Sandwiches project of Code Institute
+Import of gspread and google.oauth2.service_account and also constant variables
+were added from the Love Sandwiches project of Code Institute
+The idea of using tabulate library were taken from stackoverflow
 """
 
 import gspread
@@ -26,8 +28,9 @@ prices = SHEET.worksheet('prices')
 def menu():
 
     """
-    Provides the customer with a list of products 
-    with prices and a specific order index
+    Provides the customer with a list of products
+    with prices in the form of the table
+    Takes the data from the worksheet
     """
     print('Welcome to automatic order system!')
     print('What would you like to order?')
@@ -36,12 +39,12 @@ def menu():
     column_product = prices.col_values(1)
 
     list_for_customer = list(zip(column_product, column_prices))
-    table_for_customer = tabulate((list_for_customer), headers=['Product', 'Price'])
+    menu = tabulate((list_for_customer), headers=['Product', 'Price'])
     print("")
-    print(table_for_customer)
+    print(menu)
     print("")
-    
-    return table_for_customer
+
+    return menu
 
 
 def get_order():
@@ -51,11 +54,10 @@ def get_order():
     Run a wile loop to collect a valid string of data from the user
     The loop repeatedly request data untill it is valid
     """
-    
-    while True:
 
+    while True:
         print("Please, select from the list above and type")
-        print ("the name of the product and it's price separated by coma")
+        print("the name of the product and it's price separated by coma")
         print('For example: earrings,12')
 
         data_str = input("Enter your data here: \n")
@@ -66,8 +68,9 @@ def get_order():
         if validate_data(sales_data):
             print('Input is valid!\n')
             break
-        
+
     return sales_data
+
 
 def validate_data(values):
     """
@@ -75,22 +78,23 @@ def validate_data(values):
     match conditions
     Raises ValueError if input didn't meet requirements
     """
-    
+
     try:
         if len(values) > 2:
             raise ValueError(
                 f"Exactly 2 values required, you provided {len(values)}"
             )
     except ValueError as e:
-            print(f"Invalid data: {e}, please try again.\n")
-            return False
+        print(f"Invalid data: {e}, please try again.\n")
+        return False
 
     return True
 
+
 def update_orders(data):
     """
-    Receives a data to be inserted into a worksheet
-    Updates a relevant worksheet with data provided
+    Receives a data and inserts it into the worksheet
+    Informs user about the process
     """
     print('Working on your order...\n')
     orders_to_update = SHEET.worksheet('orders')
@@ -98,20 +102,23 @@ def update_orders(data):
     print('Thank you!')
     print('Order taken successfully!\n')
 
+
 def count_orders_full_sum():
     """
     Count sum of all items in order
     Convert updated data to int
     """
-    print("Calculating orders sum...\n")
+    print("Calculating order sum...\n")
 
     orders_values = orders.col_values(2)
-   
+
     int_order_values = [int(x) for x in orders_values]
-    
+
     full_sum = sum(int_order_values)
     print(f'Full sum of your order is {full_sum}')
+
     return full_sum
+
 
 def main():
     """
