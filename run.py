@@ -22,9 +22,6 @@ orders = SHEET.worksheet('orders')
 
 prices = SHEET.worksheet('prices')
 
-item_name = ""
-column_product = []
-
 
 def menu():
 
@@ -32,7 +29,6 @@ def menu():
     Provides the customer with a list of products 
     with prices and a specific order index
     """
-    global column_product
     print('Welcome to automatic order system!')
     print('What would you like to order?')
 
@@ -49,58 +45,81 @@ def menu():
 
 
 def get_order():
-    global item_name
 
-    print("Please, select from the list above")
-    print ("and type the name of the product and it's price separated by coma")
-    print('For example: earrings,12')
-    data_str = input("Enter your data here: \n")
+    """
+    Get input from the user with product name and price
+    Run a wile loop to collect a valid string of data from the user
+    The loop repeatedly request data untill it is valid
+    """
     
-    
-    sales_data = data_str.split(",")
-    item_name = sales_data[0]
-    item_price = float(sales_data[1])
-    print("Your choise is: " + item_name + " for €" + str(item_price))
-    if validate_data(sales_data):
-        print('Data is valid!')
+    while True:
 
-    print('Thank you!')
+        print("Please, select from the list above and type")
+        print ("the name of the product and it's price separated by coma")
+        print('For example: earrings,12')
 
+        data_str = input("Enter your data here: \n")
+        sales_data = data_str.split(",")
+        item_name = sales_data[0]
+        item_price = sales_data[1]
+        print("Your choice is: " + item_name + " for €" + item_price)
+        if validate_data(sales_data):
+            print('Input is valid!')
+            break
+        
     return sales_data
 
-def validate_data(sales_data):
+def validate_data(values):
     """
-    Inside the try, we check if the name of the product that user
-    put to console match products in the list.
-    Raises ValueError if there is no match.
+    Inside the try, we check if number of values provided by user
+    mutch conditions
+    Raises ValueError if there is no match
     """
-    global item_name
-    global column_product
-
-
-
+    
     try:
-        if item_name not in column_product:
-             raise ValueError(
-                "Sorry, this product is not in the list."
+        if len(values) > 2:
+            raise ValueError(
+                f"Exactly 2 values required, you provided {len(values)}"
             )
     except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
-
-        return False
+            print(f"Invalid data: {e}, please try again.\n")
+            return False
 
     return True
 
+def update_orders(data):
+    """
+    Receives a data to be inserted into a worksheet
+    Updates a relevant worksheet with data provided
+    """
+    print('Working on your order...\n')
+    orders_to_update = SHEET.worksheet('orders')
+    orders_to_update.append_row(data)
+    print('Thank you!')
+    print('Order taken successfully!\n')
 
+def count_orders_full_sum():
+    """
+    Count sum of all orders for the day
+    """
+    print("Calculating orders sum...\n")
 
+    orders_values = orders.col_values(2)
+   
+    int_order_values = [int(x) for x in orders_values]
+    
+    full_sum = sum(int_order_values)
+    print(f'Full sum of your order is {full_sum}')
+    return full_sum
 
 def main():
     """
     Run all program functions
     """
     menu()
-    validate_data(get_order())
-    validate_data(menu())
+    data = get_order()
+    update_orders(data)
+    count_orders_full_sum()
 
 
 main()
