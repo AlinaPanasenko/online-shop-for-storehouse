@@ -1,146 +1,130 @@
-# Online Shop For Storehouse
-## Holidays edition))
+# Online Shop For Jewelry
 
-I am an owner of storehouse that sells various holiday merchandise. I have a very busi time before holidays, for example, Christmas and I have trouble writing down all incoming orders. So I've desided to write a simple app that would keep track of the orders, add numbers of ordered goods to googlesheets and  add all the numbers in the end of the market day.
+This app is for the owner of a small one-person business selling handmade jewellery. This app is for the owner of a small one-person business selling handmade jewellery. It takes orders from the customer through the terminal and writes them to Google Sheets.
 
-![Responsive Mockup](assets/images/RM_Mocup%20for%20common%20screen%20sizes.png)
+[Here is the live version of my project](https://online-shop-for-jewelry.herokuapp.com/)
+
+
+![Responsive Mockup](assets/images/mockup.png)
 
 ## Features 
 
 
 ### Existing Features
 
-- __The Header__
+- __Menu__
 
-  - Contains the Logo image with link to the Home page and the Navigation Menu.
-  - The Navigation Menu contains links to the Home, Gallery and Find a Group pages and will be responsive on all devices.
-  - This will allow users to easily navigate between the pages within the site on any size device.
+  - Contains greeting and an app presentation.
+  - Presents a menu for the user in the form of a table with a list of products and prices.
+  
+![Menu](assets/images/menu.png)
 
-![Header](assets/images/RM_Header.png)
+- __User Input__
 
-- __The Landing page__
+  - Contains message prompting the user to order from the menu. 
+  - Tere is a message instructing how to enter data correctly.
+  - Contains the line where the user enters a message.
 
-  - The Landing page includes a photograph with text overlay to allow the user to read about what Forest Bathing actually is. 
-  - This section introduces the user to Forest Bathing with beautiful photo and an eye catching design to grab their attention.
+![Taking Customer Order](assets/images/input.png)
 
-![Landing Page](assets/images/RM_Landing_page.png)
+- __Validation__
 
-- __The Information Section__
+  - App validates the message from the user whether it contains the required amount of data.
+  - Congratulating if the input is correct.
 
-  - The Information section will allow the user to see the benefits of implementing the Forest Bathing moto in their own life, as well as the benefits of regular walking overall. 
+![Validation](assets/images/validation_right.png)
 
-![Club Ethos](assets/images/rm_information_section.png)
+  - Or throws an error if the input is invalid.
 
-- __The Footer__ 
+![Validation](assets/images/validation_wrong.png)
 
-  - The footer section includes links to the relevant social media pages for Forest Bathing and will be responsive on all devices. The links will open to a new tab to allow easy navigation for the user.
-  - The footer is valuable to the user as it encourages them to keep connected via social media.
 
-![Footer](assets/images/rm_footer.png)
+- __Adding the Order__ 
 
-- __The Gallery__
+  - After taking user input application add the data to the workseets and informs the customer that their order is taken.
 
-  - The Gallery pages containes appealing relevant photos that are used to inspire people to go outside and take a walk.
+![Adding the order](assets/images/adding_the_data.png)
 
-![Gallery](assets/images/rm_gallery.png)
+- __Calculating The Sum__
 
-- __The Find a Group page__
+  - The app takes all the data from current and previous inputs and calculates the sum of it.
+  - Then the app informs the customer about the full price of their order.
+![Sum](assets/images/order_sum.png)
 
-  - This page will allow the users to get signed up to Forest Bathing site and help them to find a group in their area. The user will be asked to submit their full name and email address.
 
-![Find a Group](assets/images/rm_find_a_group.png)
+## Data Model
 
-- __The Thank you page__
-
-  - After submitting a form user will be redirected to the Thank you for submitting a form page with the relevant message. This would allow the user to know that his data have been received.
-
-![Thank You](assets/images/rm_thank_you_page.png)
-
+Data Model is based on a function structure that makes sequence of requesting, taking and validating data from a user, calculating it and returning the result. These functions are called from the main() function.
+Google Sheets are used as external data storage from were one function takes the data, and another add it. This service was connected to the project using Google Cloud API library.
+![API](assets/images/google_cloud3.png)
 
 
 ## Technologies
 
-- HTML
+- Python
 
-  - The structure of the website was developed using HTML as the main language.
+  - The app was developed using Python version 3.
 
-- CSS
-  - The website was styled using custom CSS in an external file in separate folder.
 
 - GitHub
-  - Was used as a workspace for developing of the website.
+  - Was used as a workspace for developing of the app.
 
 - GitPod
+
   - Tool used to commit and push code to GitHub during the development of the website.
 
 - Git
+
   - Tool used to commit and push code to GitHub during the development of the website.
 
-- Font Awesome
-  - Icons obtained from https://fontawesome.com/ were used as the Social Media links in the footer section and as decoration through the text content.
+- Heroku
 
-- LOGO.com
-  - Logo image for the header was made with https://logo.com/ service.
+  - Platform used to deploy and run the app.
+
+- Google Sheets
+
+  - Used to create and edit data for the app.
 
 
 ## Testing 
 
-- All pages of this website were tested on Google Chrome and Mozilla Firefox browsers.
-- I confirmed that this site is responsive, looks good and functions on all standard screen sizes implemented in the devtools device toolbar.
-- I confirmed that the navigation, information section, sign up form, and submission message are all readable and easy to understand as was confirmed with https://webaim.org/ service.
-- https://wave.webaim.org/ tool was used for final testing of the deployed website to check for any aid accessibility testing. No Errors was found.
-- I confirmed that the form works: requires entries in every field and accepts only an email in the email field.
-- Lighthouse testing was implemented for every page of the website in desktop and mobile versions. It sows 100% Accessibility in every case.
-
-<img src="assets/images/RM_Lighthouse.png">
+I have manually tested this project by doing the following:
+- Passe the code through a PEP8 linter and confirmed there are no problem.
+- Gave invalid inputs and check  for validation function working correctly.
+- Tested in my local terminal and the Code Institute Heroku terminal.
 
 
 ### Validator Testing 
 
-- HTML
-  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcode-institute-org.github.io%2Flove-running-2.0%2Findex.html)
+- PEP8 Python Validator
+  - No errors were returned when passing through the [PEP8 validator](https://pep8ci.herokuapp.com)
 
-  <img src="assets/images/RM_HTML_Validation.png">
+  <img src="assets/images/python_validator.png">
 
+## Fixed Bugs
 
-- CSS
-  - No errors or warnings were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fvalidator.w3.org%2Fnu%2F%3Fdoc%3Dhttps%253A%252F%252Fcode-institute-org.github.io%252Flove-running-2.0%252Findex.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en#css)
+- There was a problem with function counting order sum. It kept throwing an error even after converting to int. Then I realized that the index for the columns starts from one and not zero. I specified the index incorrectly and the application have read the data from the wrong column.
+- zip object is not iterable so I couldn't print it to the console. I've fixed it by wrapping zip in list() constructor.
+![bugs](assets/images/bugs.png)
 
-  <img src="assets/images/RM_CSS_Validation.png">
-
- ### Functional testing
-
-- Testing was performed on all the navigation links on all the website pages, to ensure that they navigate to the correct pages as per design. This was done by clicking on the navigation links on each page.
-
-- Footer Social Media Icons / Links
-
-  - Testing was performed on the Font Awesome Social Media icons in the footer to ensure that each one opened in a new tab and that each one had a hover affect of the orange branding color.
-  - Each item opened a new tab when clicked as expected and correct hover color was present. 
-
-## Fixed Bags 
-- There was a problem with the responsiveness of the hero-image and cover-text section of the Home page and I get help from tutor with this part of code. I've commented on it in the style.css and index.html files.
-- Also, there was a problem with centring social platforms icons in the footer section and I get help from my mentor. I commented on it in the style.css file.
+## Remaining Bugs
+ - No bugs remaining.
 
 
 ## Deployment
 
-- The site was created using the GitPod code editor and pushed to GitHub to the remote repository ‘forest-bathing’.
+This project was deployed using Code Institute's mock terminal for Heroku.
 
-- The site was deployed to GitHub pages.
+- Steps for deployment:
+  - Fork or clone this repository
+  - Create a new Heroku app
+  - Add Config Vars for CREDS and PORT
+  - Set the buidlbacks to Python and NodeJS in that order
+  - Link the Heroku app to the GitHub repository
+  - Click on Deploy
 
-The live link can be found here - https://alinapanasenko.github.io/forest-bathing/
+## Credits
 
+- Application structure and addition of the Google Sheets API were taken from [The Love Sandwiches project](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LS101+2021_T1/courseware/293ee9d8ff3542d3b877137ed81b9a5b/071036790a5642f9a6f004f9888b6a45/).
+- The idea of using tabulate library was taken from stackoverflow: [Printing Lists as Tabular Data](https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data).
 
-## Credits 
-
-### Content 
-
-- Main structure of the website, the Footer and The Header part of code were taken from [The Love Running project](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LR101+2021_T1/courseware/4a07c57382724cfda5834497317f24d5/f2db5fd401004fccb43b01a6066a5333/).
-- The text for the Home page was taken from the article "6 Surprising Health Benefits of Walking Through a Forest", Psychology Today written by Marlynn Wei M.D., J.D. The article can be found by the following link:
-https://www.psychologytoday.com/ie/blog/urban-survival/202108/6-surprising-health-benefits-walking-through-forest#:~:text=Forest%20walking%20promotes%20relaxation.,system%2C%20or%20parasympathetic%20nervous%20system
-- Instructions on how to implement form section on the Find a Group page was taken from [Signup Form: Challenge](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LR101+2021_T1/courseware/4a07c57382724cfda5834497317f24d5/4d85cd1a2c57485abbd8ccec8c00732c/) for the Love Running project.
-- The icons in the Footer and Information section of the Home page were taken from [Font Awesome](https://fontawesome.com/)
-
-### Media
-
-- The photos used on Forest Buthing website were takeb from https://www.pexels.com/ , https://pikwizard.com/ , https://www.rawpixel.com/ open source websites.
