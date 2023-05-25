@@ -24,6 +24,11 @@ orders = SHEET.worksheet('orders')
 
 prices = SHEET.worksheet('prices')
 
+column_prices = prices.col_values(2)
+column_product = prices.col_values(1)
+
+list_for_customer = list(zip(column_product, column_prices))
+
 
 def menu():
 
@@ -35,16 +40,12 @@ def menu():
     print('Welcome to automatic order system!')
     print('What would you like to order?')
 
-    column_prices = prices.col_values(2)
-    column_product = prices.col_values(1)
-
-    list_for_customer = list(zip(column_product, column_prices))
-    menu = tabulate((list_for_customer), headers=['Product', 'Price'])
+    products_and_prices = tabulate((list_for_customer), headers=['Product', 'Price'])
     print("")
-    print(menu)
+    print(products_and_prices)
     print("")
 
-    return menu
+    return products_and_prices
 
 
 def get_order():
@@ -59,15 +60,18 @@ def get_order():
         print("Please, select from the list above and type")
         print("the name of the product and it's price separated by coma")
         print('For example: earrings,12')
-
+        print(column_prices)
         data_str = input("Enter your data here: \n")
         sales_data = data_str.split(",")
         item_name = sales_data[0]
         item_price = sales_data[1]
-        print("Your choice is: " + item_name + " for €" + item_price)
-        if validate_data(sales_data):
-            print('Input is valid!\n')
-            break
+        if item_name in column_product and item_price in column_prices:
+            if validate_data(sales_data):
+                print('******************')
+                print('Input is valid!\n')
+                print("Your choice is: " + item_name + " for €" + item_price + '\n')
+                break
+        print('******************')
 
     return sales_data
 
@@ -78,12 +82,12 @@ def validate_data(values):
     match conditions
     Raises ValueError if input didn't meet requirements
     """
-
     try:
-        if len(values) > 2:
+        if len(values) != 2:
             raise ValueError(
                 f"Exactly 2 values required, you provided {len(values)}"
             )
+            
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
@@ -116,6 +120,7 @@ def count_orders_full_sum():
 
     full_sum = sum(int_order_values)
     print(f'Full sum of your order is {full_sum}')
+    print('******************')
 
     return full_sum
 

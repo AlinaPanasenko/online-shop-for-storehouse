@@ -22,10 +22,12 @@ This app is for the owner of a small one-person business selling handmade jewell
 - __User Input__
 
   - Contains message prompting the user to order from the menu. 
-  - Tere is a message instructing how to enter data correctly.
+  - There is a message instructing how to enter data correctly.
   - Contains the line where the user enters a message.
 
 ![Taking Customer Order](assets/images/input.png)
+
+- There is if statement cheking if user input correct names of the products and prices.
 
 - __Validation__
 
@@ -108,7 +110,7 @@ I have manually tested this project by doing the following:
 ![bugs](assets/images/bugs.png)
 
 ## Remaining Bugs
- - No bugs remaining.
+ - User input validating on the correct input of the product names and list of prices, but in this case thre is no way to check if the product price in input match the product price in the product list. 
 
 
 ## Deployment
