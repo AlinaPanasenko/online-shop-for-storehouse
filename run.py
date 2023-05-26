@@ -60,7 +60,6 @@ def get_order():
         print("Please, select from the list above and type")
         print("the name of the product and it's price separated by coma")
         print('For example: earrings,12')
-        print(column_prices)
         data_str = input("Enter your data here: \n")
         sales_data = data_str.split(",")
         item_name = sales_data[0]
@@ -87,9 +86,9 @@ def validate_data(values):
             raise ValueError(
                 f"Exactly 2 values required, you provided {len(values)}"
             )
-            
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
+
+    except ValueError as error:
+        print(f"Invalid data: {error}, please try again.\n")
         return False
 
     return True

@@ -27,11 +27,13 @@ This app is for the owner of a small one-person business selling handmade jewell
 
 ![Taking Customer Order](assets/images/input.png)
 
-- There is if statement cheking if user input correct names of the products and prices.
 
 - __Validation__
+  
+  - The application checks if the user has entered data that matches the list of products and prices, and if it's not prompt the user to enter the correct data.
+![Validation](assets/images/validation_list.png)
 
-  - App validates the message from the user whether it contains the required amount of data.
+  - The app validates the message from the user whether it contains the required amount of data.
   - Congratulating if the input is correct.
 
 ![Validation](assets/images/validation_right.png)
@@ -110,7 +112,13 @@ I have manually tested this project by doing the following:
 ![bugs](assets/images/bugs.png)
 
 ## Remaining Bugs
- - User input validating on the correct input of the product names and list of prices, but in this case thre is no way to check if the product price in input match the product price in the product list. 
+ - The app checks if the user input matches the list of products and prices, but it can't test if a particular product matches its particular price.
+![bugs](assets/images/remained_bug.png)
+
+ - There is a problem with try/exept statement. The app checks if the user enter more then too values and throws a correct message:
+![bugs](assets/images/correct_message.png)
+But when the user input is less than two values or none values at all there is an IndexError:
+![bugs](assets/images/index_error.png)
 
 
 ## Deployment
