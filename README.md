@@ -1,6 +1,6 @@
 # Online Shop For Jewelry
 
-This app is for the owner of a small one-person business selling handmade jewellery. This app is for the owner of a small one-person business selling handmade jewellery. It takes orders from the customer through the terminal and writes them to Google Sheets.
+This app is for the owner of a small one-person business selling handmade jewellery. It takes orders from the customer through the terminal and writes them to Google Sheets.
 
 [Here is the live version of my project](https://online-shop-for-jewelry.herokuapp.com/)
 
